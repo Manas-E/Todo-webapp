@@ -4,9 +4,32 @@
 	<title> Todo List</title>
 </head>
 <body>
+<!-- 
+	calling date from js file -->
 
 	<h1><%= varday     %>  </h1>
 
+	<ul>
+<!-- 		 
+		 a loop for iterating over task list
+ -->	
+ 		<% for(let i=0;i< listItems.length ; i++){ %>
+
+				<li><h2> <%= listItems[i] %></h2></li>
+
+			<% } %>
+
+		
+	</ul>
+
+<form action="/" method="post">
+<!-- 
+ form to take input and pass it to the js file
+ -->
+ 	Enter Your Task: <input type="text" name="input_task">
+	<button type="submit">Add</button>
+	
+</form>
 
 </body>
 </html>

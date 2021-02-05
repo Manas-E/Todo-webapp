@@ -4,6 +4,7 @@
 const express= require("express");
 const bodyParser= require("body-parser");
 
+var list=[];
 
 app=express();
 
@@ -32,17 +33,31 @@ app.get("/",function(req,res){
 	
 	day=today.toLocaleDateString("en-US",options);
 	
-	console.log(day);
+	// sending the data to html page
 
-	res.render("index", {varday : day});
+	res.render("index", {varday : day,listItems: list});
 
 });
 
 
+//handling a post request
+
+app.post("/",function(req,res){
+
+	// getting data from the html form 
+
+	let listItem= req.body.input_task;
+
+
+	// adding data to the list
+
+	list.push(listItem);
+
+	res.redirect("/");
+});
+
+
 // listening to a port  
-
-
-
 
 
 app.listen(3000, function(req,res){
@@ -51,3 +66,4 @@ app.listen(3000, function(req,res){
 
 
 });
+
