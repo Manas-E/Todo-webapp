@@ -7,15 +7,34 @@ const bodyParser= require("body-parser");
 
 app=express();
 
+app.use(bodyParser.urlencoded({extended: true}));
+
+//setting up ejs file location
+// this looks for the ejs file in views folder
+
+app.set("view engine","ejs")
 //calling get 
 
 app.get("/",function(req,res){
 
+	
+	// creating a date variable
+	
+	let today= new Date();
+	let options={weekday: "long",
+					day: "numeric",
+					month:"long" }
+	
+	let day="";
+	
+	
+	// formating the day according to the options
+	
+	day=today.toLocaleDateString("en-US",options);
+	
+	console.log(day);
 
-
-res.send("Hello");
-
-
+	res.render("index", {varday : day});
 
 });
 
