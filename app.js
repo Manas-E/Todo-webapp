@@ -54,20 +54,32 @@ app.post("/",function(req,res){
 
 	let listItem= req.body.input_task;
 
+	if(listItem== null){
+	
+		list=[];
 
+		res.redirect("/");
+		
+	}
+	else{
+
+		
 	// adding data to the list
 
 	list.push(listItem);
 
-	res.redirect("/");
+	res.redirect("/");		
+	}
+	
+
 });
 
 app.post("/clear",function(req,res){
 
 	// getting data from the html form 
 
-	list=[];
-	
+	list.pop();
+
 	res.redirect("/");
 });
 
