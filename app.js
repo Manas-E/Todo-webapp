@@ -10,11 +10,17 @@ app=express();
 
 app.use(bodyParser.urlencoded({extended: true}));
 
+// declaring public folder to store css files 
+
+app.use(express.static("public"));
 //setting up ejs file location
 // this looks for the ejs file in views folder
 
 app.set("view engine","ejs")
 //calling get 
+
+
+
 
 app.get("/",function(req,res){
 
@@ -55,6 +61,16 @@ app.post("/",function(req,res){
 
 	res.redirect("/");
 });
+
+app.post("/clear",function(req,res){
+
+	// getting data from the html form 
+
+	list=[];
+	
+	res.redirect("/");
+});
+
 
 
 // listening to a port  
