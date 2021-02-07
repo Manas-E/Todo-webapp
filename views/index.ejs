@@ -33,7 +33,7 @@
 		<!-- 
 		 form to take input and pass it to the js file
 		 -->
-			<button type="submit" formaction="/clear" id="clear" >-</button> 
+			<button type="submit" formaction="/clear" id="clear" name="clear" value= <%= listTitle %>>-</button> 
 		 	<input type="text" name="input_task" placeholder=" New Task" autocomplete="off">
 			<button type="submit" name="list" value= <%= listTitle %> >+</button>
 		</form>
@@ -45,5 +45,11 @@
 
 	
 	</div>
+
+<script type="text/javascript" src="js/index.js"> 
+
+
+
+</script>
 
 	<%- include("footer") -%>

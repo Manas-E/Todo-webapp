@@ -4,6 +4,9 @@
 const express= require("express");
 const bodyParser= require("body-parser");
 
+const date= require(__dirname+ "/date.js");
+
+
 var list=[];
 var workList=[];
 
@@ -27,21 +30,12 @@ app.set("view engine","ejs")
 app.get("/",function(req,res){
 
 	
-	// creating a date variable
-	
-	let today= new Date();
-	let options={weekday: "long",
-					day: "numeric",
-					month:"long" }
-	
-	let day="";
-	
-	
-	// formating the day according to the options
-	
-	day=today.toLocaleDateString("en-US",options);
 	
 	// sending the data to html page
+	let day = date.getDay();
+
+
+
 
 	res.render("index", {listTitle : day,listItems: list});
 
@@ -56,30 +50,49 @@ app.post("/",function(req,res){
 
 	let listItem= req.body.input_task;
 
-	let listType= req.body.list;
+	let  listType= req.body.list;
+
+	let  clear_var = req.body.clear;
+
+	
+	console.log(listItem,listType);
 
 
 	if(listItem== null){
-	
+
+		if(clear_var== "Work")
+		{
+
+			workList=[];
+			console.log("alright");
+
+
+			res.redirect("/work");
+		}
+		else{
+		
 		list=[];
 
 		res.redirect("/");
-		
+			
+		}
+	
+		workList=[];list=[];
 	}
 	else{
 
 		if(listType=="Work")
 		{
 
-	workList.push(listItem);
+			workList.push(listItem);
 
-	res.redirect("/work");
+			res.redirect("/work");
 		}
 		else{
 			
-	list.push(listItem);
+			list.push(listItem);
 
-	res.redirect("/");			
+			res.redirect("/");			
 		}
 
 	// adding data to the list
@@ -93,9 +106,30 @@ app.post("/clear",function(req,res){
 
 	// getting data from the html form 
 
-	list.pop();
 
-	res.redirect("/");
+	let  listType= req.body.clear;
+
+	console.log(listType);
+
+
+	if(listType=="Work")
+		{
+
+			workList.pop();
+
+
+			console.log(workList);
+
+			res.redirect("/work");
+		}
+		else{
+			
+			list.pop();
+
+
+			res.redirect("/");			
+		}
+
 });
 
 
