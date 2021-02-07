@@ -5,6 +5,8 @@ const express= require("express");
 const bodyParser= require("body-parser");
 
 var list=[];
+var workList=[];
+
 
 app=express();
 
@@ -41,7 +43,7 @@ app.get("/",function(req,res){
 	
 	// sending the data to html page
 
-	res.render("index", {varday : day,listItems: list});
+	res.render("index", {listTitle : day,listItems: list});
 
 });
 
@@ -54,6 +56,9 @@ app.post("/",function(req,res){
 
 	let listItem= req.body.input_task;
 
+	let listType= req.body.list;
+
+
 	if(listItem== null){
 	
 		list=[];
@@ -63,12 +68,22 @@ app.post("/",function(req,res){
 	}
 	else{
 
-		
-	// adding data to the list
+		if(listType=="Work")
+		{
 
+	workList.push(listItem);
+
+	res.redirect("/work");
+		}
+		else{
+			
 	list.push(listItem);
 
-	res.redirect("/");		
+	res.redirect("/");			
+		}
+
+	// adding data to the list
+		
 	}
 	
 
@@ -84,6 +99,14 @@ app.post("/clear",function(req,res){
 });
 
 
+
+app.get("/work",function(req,res){
+
+	res.render("index", {listTitle : "Work List",listItems: workList});
+
+
+
+});
 
 // listening to a port  
 

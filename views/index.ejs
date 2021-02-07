@@ -1,17 +1,12 @@
-<!DOCTYPE html>
-<html>
-<head>
-	<title> Todo List</title>
-
-	<link rel="stylesheet" type="text/css" href="css/styles.css">
 
 
-</head>
-<body>
+<%- include("header") -%>
+
+
 <!-- 
 	calling date from js file -->
 <div class="box" id=heading>
-	<h1><%= varday     %>  </h1>
+	<h1><%= listTitle  %>  </h1>
 
 
 </div>
@@ -40,7 +35,7 @@
 		 -->
 			<button type="submit" formaction="/clear" id="clear" >-</button> 
 		 	<input type="text" name="input_task" placeholder=" New Task" autocomplete="off">
-			<button type="submit">+</button>
+			<button type="submit" name="list" value= <%= listTitle %> >+</button>
 		</form>
 
 
@@ -50,16 +45,5 @@
 
 	
 	</div>
-<script type="text/javascript" src="js/index.js"> 
 
-
-
-</script>
-
-</body>
-</html>
-
-
-
-
-
+	<%- include("footer") -%>
