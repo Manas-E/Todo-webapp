@@ -1,5 +1,5 @@
 # Todo-webapp
-This is a basic todolist webapp. In which we can add and delete task.
+This is a Full Stack todolist webapp that lets you add and delete task.
 
 ## Main Files 
 
